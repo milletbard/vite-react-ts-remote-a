@@ -24,9 +24,12 @@ export default defineConfig({
     port: 2000,
   },
   build: {
-    target: "chrome89", // esnext 會讓 Vite / esbuild 採用最新可用語法F
+    target: "esnext", // 使用最新語法
+    minify: false, // 不壓縮
+    cssCodeSplit: true, // 拆分css
   },
-  base: "http://localhost:2000", // 配置基础路徑
+  // https://vite-react-ts-remote-a.vercel.app/
+
   plugins: [
     react(), // 配置react
     federation({
