@@ -33,7 +33,7 @@ export default defineConfig({
       name: "remoteA", // 這個名稱會成為全域變數的名稱
       filename: "remoteEntry.js", // 遠端入口檔名
       exposes: {
-        "./App": "./src/App.tsx",
+        ".": "./src/main.tsx",
       },
       shared: ["react", "react-dom"],
     }),
