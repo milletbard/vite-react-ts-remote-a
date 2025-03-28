@@ -7,6 +7,7 @@ function logManifestUrl(): Plugin {
     name: "log-manifest-url",
     configureServer(server) {
       server.httpServer?.once("listening", () => {
+        console.log(server);
         // 在正式開始監聽後，印出連結
         console.log(
           `\n[MF Manifest] ${server.config.server.origin}/remoteEntry.js\n`
@@ -18,10 +19,11 @@ function logManifestUrl(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "./",
+  base: "/",
   // 加入server配置
   server: {
     port: 2000,
+    origin: "http://localhost:2000", // 配置跨域
   },
 
   build: {
@@ -31,9 +33,10 @@ export default defineConfig({
     react(), // 配置react
     federation({
       filename: "remoteEntry.js", // 遠端入口檔名
-      name: "remoteA", // 這個名稱會成為全域變數的名稱
+      manifest: true,
+      name: "remoteA",
       exposes: {
-        ".": "./src/main.tsx",
+        "./App": "./src/main.tsx",
       },
       shared: ["react", "react-dom"],
     }),
