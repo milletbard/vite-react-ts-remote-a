@@ -18,6 +18,7 @@ function logManifestUrl(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
+  
   // 加入server配置
   server: {
     origin: "http://localhost:2000", // 配置跨域
@@ -28,7 +29,7 @@ export default defineConfig({
     minify: false, // 不壓縮
     cssCodeSplit: true, // 拆分css
   },
-  base: "/",
+  base: "./",
   // https://vite-react-ts-remote-a.vercel.app/
 
   plugins: [
