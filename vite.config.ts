@@ -18,24 +18,20 @@ function logManifestUrl(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "./",
   // 加入server配置
   server: {
-    origin: "http://localhost:2000", // 配置跨域
     port: 2000,
   },
-  base: "./", // ✅ 讓 remoteEntry.js 和 chunk 的相對路徑正確
 
   build: {
-    target: "esnext", // 使用最新語法
-    minify: false, // 不壓縮
-    cssCodeSplit: true, // 拆分css
+    target: "chrome89",
   },
   plugins: [
     react(), // 配置react
     federation({
-      manifest: true,
-      name: "remoteA", // 這個名稱會成為全域變數的名稱
       filename: "remoteEntry.js", // 遠端入口檔名
+      name: "remoteA", // 這個名稱會成為全域變數的名稱
       exposes: {
         ".": "./src/main.tsx",
       },
