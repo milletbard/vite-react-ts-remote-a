@@ -14,7 +14,6 @@ interface Product {
 
 function App() {
   const [count, setCount] = useState(1);
-  // pre
   const [prevData, setPrevData] = useState<Product[]>();
 
   const { data = prevData, isFetching } = useQuery<Product[]>({
